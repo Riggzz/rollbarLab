@@ -57,7 +57,7 @@ app.delete('/api/pokemons/:index', (req, res) => {
 const port = process.env.PORT || 5050
 
 app.listen(port, () => console.log(`Server listening on ${port}`))
-
+rollbar.warning('server is running')
 
 // include and initialize the rollbar library with your access token
 var Rollbar = require("rollbar");
