@@ -42,6 +42,7 @@ app.post('/api/pokemons', (req, res) => {
    } catch (err) {
        console.log(err)
        rollbar.error('error 501')
+       rollbar.critical('webisite crashed')
    }
 })
 
