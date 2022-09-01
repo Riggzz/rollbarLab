@@ -22,6 +22,7 @@ app.get('/api/students', (req, res) => {
 
 app.post('/api/students', (req, res) => {
    let {name} = req.body
+   rollbar.log(name)
 
    const index = students.findIndex(student => {
        return student === name
