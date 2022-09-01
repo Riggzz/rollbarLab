@@ -10,28 +10,28 @@ const{ ROLLBARTOKEN } = process.env
 app.use(express.json())
 app.use(cors())
 
-const pokemon = ['Rayqauza', 'Totodile', 'Charizard']
+const pokemons = ['Rayqauza', 'Totodile', 'Charizard']
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.html'))
 })
 
-app.get('/api/pokemon', (req, res) => {
-    res.status(200).send(pokemon)
+app.get('/api/pokemons', (req, res) => {
+    res.status(200).send(pokemons)
 })
 
-app.post('/api/pokemon', (req, res) => {
+app.post('/api/pokemons', (req, res) => {
    let {name} = req.body
    rollbar.log(name)
 
-   const index = pokemon.findIndex(pokemon => {
+   const index = pokemons.findIndex(pokemon => {
        return pokemon === name
    })
 
    try {
        if (index === -1 && name !== '') {
-           pokemon.push(name)
-           res.status(200).send(pokemon)
+           pokemons.push(name)
+           res.status(200).send(pokemons)
        } else if (name === ''){
            res.status(400).send('You must enter a name.')
        } else {
@@ -45,10 +45,10 @@ app.post('/api/pokemon', (req, res) => {
    }
 })
 
-app.delete('/api/pokemon/:index', (req, res) => {
+app.delete('/api/pokemons/:index', (req, res) => {
     const targetIndex = +req.params.index
     
-    pokemon.splice(targetIndex, 1)
+    pokemons.splice(targetIndex, 1)
     res.status(200).send(pokemon)
     rollbar.info('success')
 })
@@ -56,7 +56,7 @@ app.delete('/api/pokemon/:index', (req, res) => {
 const port = process.env.PORT || 5050
 
 app.listen(port, () => console.log(`Server listening on ${port}`))
-rollbar.warning('website is up')
+
 
 // include and initialize the rollbar library with your access token
 var Rollbar = require("rollbar");

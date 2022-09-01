@@ -35,7 +35,7 @@
 
                 element.addEventListener('click', () => {
                     axios
-                        .delete(`/api/pokemon/${theIndexValue}`)
+                        .delete(`/api/pokemons/${theIndexValue}`)
                         .then(res => {
                             putTheThingInTheView(res)
                         })
@@ -47,7 +47,7 @@
             evt.preventDefault();
 
             axios
-                .post('/api/pokemon', { name: nameInput.value })
+                .post('/api/pokemons', { name: nameInput.value })
                 .then(res => {
                     putTheThingInTheView(res)
                 })
@@ -69,7 +69,7 @@
 
         // get student list on initial load
         axios
-            .get('/api/pokemon')
+            .get('/api/pokemons')
             .then(res => {
                 putTheThingInTheView(res)
             })
