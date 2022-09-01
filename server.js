@@ -49,7 +49,7 @@ app.delete('/api/pokemons/:index', (req, res) => {
     const targetIndex = +req.params.index
     
     pokemons.splice(targetIndex, 1)
-    res.status(200).send(pokemon)
+    res.status(200).send(pokemons)
     rollbar.info('success')
 })
 
